@@ -14,35 +14,52 @@
                 <input type="text" class="text-input--underbar width-half" placeholder="Nombre..." ng-model="nombreInvocador">
                 <ons-button modifier="large" ng-click="consultarInvocador()">See Detail</ons-button>
                 <ons-list modifier="inset" style="margin-top: 10px">
-                <ons-list-item class="item"  ng-show="encontrado">
-                      <ons-row>
-                        <ons-col width="60px"> 
-                          <div class="item-thum"></div>
-                        </ons-col>
-                        <ons-col>
-                          <header>
-                            <span class="item-title">Nombre: {{invocador[nombreInvocadorIngresado].name}}</span>
-                            <span class="item-label">Nivel: {{invocador[nombreInvocadorIngresado].summonerLevel}}</span>
-                          </header>
-                          <p class="item-desc">Wins Normal: {{summary.wins}}</p>
-                        </ons-col>
-                      </ons-row>
-                </ons-list-item>
-                <ons-list-item  ng-show="encontrado">
-                    <ons-icon icon="ion-chatboxes" fixed-width="true" style="color: #ccc"></ons-icon>
-                    Normal
-                     <ons-row>
-                   <ons-col >
-                          <p class="item-desc">Wins: {{summary.wins}}</p>
-                          <p class="item-desc">Total Assists: {{summary.totalAssists}}</p>
-                          <p class="item-desc">Total ChampionKills: {{summary.aggregatedStats.totalChampionKills}}</p>
-                          <p class="item-desc">Total Minion Kills: {{summary.aggregatedStats.totalMinionKills}}</p>
-                          <p class="item-desc">totalNeutralMinionsKilled: {{summary.aggregatedStats.totalNeutralMinionsKilled}}</p>
-                          <p class="item-desc">Total Turrets Killed: {{summary.aggregatedStats.totalTurretsKilled}}</p>
-                    </ons-col>
-                  </ons-row>
-                  </ons-list-item>
 
+                          <ons-list-item class="item"  ng-show="encontrado">
+                                <ons-row>
+                                  <ons-col width="80px"> 
+                                    <img class="blueBorder" width="64px" height="64px" ng-src="{{urlIcon}}{{invocador[nombreInvocadorIngresado].profileIconId}}.png" ></img>
+                                  </ons-col>
+                                  <ons-col>
+                                    <header>
+                                      <span class="item-title">Nombre: {{invocador[nombreInvocadorIngresado].name}}</span>
+                                      <span class="item-label">Nivel: {{invocador[nombreInvocadorIngresado].summonerLevel}}</span>
+                                    </header>
+                                    <p class="item-desc" ng-show="datosRanked">{{rankedSoloLeague.tier}} {{rankedSoloLeague.entries[0].division}} {{rankedSoloLeague.entries[0].leaguePoints}}LP</p>
+                                  </ons-col>
+                                </ons-row>
+                          </ons-list-item>
+                          <!-- Normal -->
+                          <ons-list-item  ng-show="encontrado">
+                              <ons-icon icon="ion-arrow-right-b" fixed-width="true" class="blueIcon"></ons-icon>
+                              Normal
+                               <ons-row>
+                             <ons-col class="colDetalle">
+                                    <p class="item-desc">Wins: {{summary.wins}}</p>
+                                    <p class="item-desc">Total Assists: {{summary.aggregatedStats.totalAssists}}</p>
+                                    <p class="item-desc">Total ChampionKills: {{summary.aggregatedStats.totalChampionKills}}</p>
+                                    <p class="item-desc">Total Minion Kills: {{summary.aggregatedStats.totalMinionKills}}</p>
+                                    <p class="item-desc">Total Neutral Minions Killed: {{summary.aggregatedStats.totalNeutralMinionsKilled}}</p>
+                                    <p class="item-desc">Total Turrets Killed: {{summary.aggregatedStats.totalTurretsKilled}}</p>
+                              </ons-col>
+                            </ons-row>
+                            </ons-list-item>
+                            <!-- Ranked -->
+                             <ons-list-item  ng-show="encontrado">
+                              <ons-icon icon="ion-arrow-right-b" fixed-width="true" class="blueIcon"></ons-icon>
+                              Ranked Solo
+                               <ons-row>
+                             <ons-col class="colDetalle" >
+                                    <p class="item-desc">Wins: {{rankedSolo.wins}}</p>
+                                    <p class="item-desc">Losses: {{rankedSolo.losses}}</p>
+                                    <p class="item-desc">Total Assists: {{rankedSolo.aggregatedStats.totalAssists}}</p>
+                                    <p class="item-desc">Total ChampionKills: {{rankedSolo.aggregatedStats.totalChampionKills}}</p>
+                                    <p class="item-desc">Total Minion Kills: {{rankedSolo.aggregatedStats.totalMinionKills}}</p>
+                                    <p class="item-desc">Total Neutral Minions Killed: {{rankedSolo.aggregatedStats.totalNeutralMinionsKilled}}</p>
+                                    <p class="item-desc">Total Turrets Killed: {{rankedSolo.aggregatedStats.totalTurretsKilled}}</p>
+                              </ons-col>
+                            </ons-row>
+                            </ons-list-item>
                 </ons-list>
           </div>
     </ons-page>
