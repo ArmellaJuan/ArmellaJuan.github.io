@@ -1,0 +1,65 @@
+    <ons-page id="page2.html">
+      <ons-toolbar>
+        <div class="left">
+          <ons-toolbar-button onclick="menu.toggleMenu()"><ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
+        </div>
+        <div class="center" >
+        Summoner's Detail
+        </div>
+      </ons-toolbar>
+          <div class="center" ng-controller="ApiLolController">
+
+              
+
+                <input type="text" class="text-input--underbar width-half" placeholder="Nombre..." ng-model="nombreInvocador">
+                <ons-button modifier="large" ng-click="consultarInvocador()">See Detail</ons-button>
+                <ons-list modifier="inset" style="margin-top: 10px">
+
+                          <ons-list-item class="item"  ng-show="encontrado">
+                                <ons-row>
+                                  <ons-col width="80px"> 
+                                    <img class="blueBorder" width="64px" height="64px" ng-src="{{urlIcon}}{{invocador[nombreInvocadorIngresado].profileIconId}}.png" ></img>
+                                  </ons-col>
+                                  <ons-col>
+                                    <header>
+                                      <span class="item-title">Nombre: {{invocador[nombreInvocadorIngresado].name}}</span>
+                                      <span class="item-label">Nivel: {{invocador[nombreInvocadorIngresado].summonerLevel}}</span>
+                                    </header>
+                                    <p class="item-desc" ng-show="datosRanked">{{rankedSoloLeague.tier}} {{rankedSoloLeague.entries[0].division}} {{rankedSoloLeague.entries[0].leaguePoints}}LP</p>
+                                  </ons-col>
+                                </ons-row>
+                          </ons-list-item>
+                          <!-- Normal -->
+                          <ons-list-item  ng-show="encontrado">
+                              <ons-icon icon="ion-arrow-right-b" fixed-width="true" class="blueIcon"></ons-icon>
+                              Normal
+                               <ons-row>
+                             <ons-col class="colDetalle">
+                                    <p class="item-desc">Wins: {{summary.wins}}</p>
+                                    <p class="item-desc">Total Assists: {{summary.aggregatedStats.totalAssists}}</p>
+                                    <p class="item-desc">Total ChampionKills: {{summary.aggregatedStats.totalChampionKills}}</p>
+                                    <p class="item-desc">Total Minion Kills: {{summary.aggregatedStats.totalMinionKills}}</p>
+                                    <p class="item-desc">Total Neutral Minions Killed: {{summary.aggregatedStats.totalNeutralMinionsKilled}}</p>
+                                    <p class="item-desc">Total Turrets Killed: {{summary.aggregatedStats.totalTurretsKilled}}</p>
+                              </ons-col>
+                            </ons-row>
+                            </ons-list-item>
+                            <!-- Ranked -->
+                             <ons-list-item  ng-show="encontrado">
+                              <ons-icon icon="ion-arrow-right-b" fixed-width="true" class="blueIcon"></ons-icon>
+                              Ranked Solo
+                               <ons-row>
+                             <ons-col class="colDetalle" >
+                                    <p class="item-desc">Wins: {{rankedSolo.wins}}</p>
+                                    <p class="item-desc">Losses: {{rankedSolo.losses}}</p>
+                                    <p class="item-desc">Total Assists: {{rankedSolo.aggregatedStats.totalAssists}}</p>
+                                    <p class="item-desc">Total ChampionKills: {{rankedSolo.aggregatedStats.totalChampionKills}}</p>
+                                    <p class="item-desc">Total Minion Kills: {{rankedSolo.aggregatedStats.totalMinionKills}}</p>
+                                    <p class="item-desc">Total Neutral Minions Killed: {{rankedSolo.aggregatedStats.totalNeutralMinionsKilled}}</p>
+                                    <p class="item-desc">Total Turrets Killed: {{rankedSolo.aggregatedStats.totalTurretsKilled}}</p>
+                              </ons-col>
+                            </ons-row>
+                            </ons-list-item>
+                </ons-list>
+          </div>
+    </ons-page>
