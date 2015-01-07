@@ -1,0 +1,117 @@
+  <!doctype html>
+  <html lang="en" ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <title>Lol Mobile</title>  
+    
+    <link rel="stylesheet" href="lib/onsen/css/onsenui.css">  
+    <link rel="stylesheet" href="styles/app.css"/>
+    <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" href="styles/onsen-css-components-blue-basic-theme.css">  
+
+    <script src="lib/onsen/js/angular/angular.js"></script>    
+    <script src="lib/onsen/js/onsenui.js"></script>    
+    
+    <script src="cordova.js"></script>  
+    <script src="js/app.js"></script>  
+    <script src="js/services.js"></script>  
+    <script src="js/controllers.js"></script>  
+
+
+    <script>
+      ons.ready(function() {
+      });
+    </script>
+
+    <style>
+      .item {
+        padding: 10px;
+        line-height: 1;
+      }
+      .item-thum {
+        background-color: #ccc;
+        width: 50px;
+        height: 50px;
+        border-radius: 4px;
+      }
+      .item-title {
+        font-size: 15px;
+        font-weight: 500;
+      }
+      .item-desc {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.3;
+        margin: 4px 0 0 0;
+        padding: 0 30px 0 0;
+      }
+      .item-label {
+        font-size: 12px;
+        color: #999;
+        float: right;
+      }
+    </style>
+  </head>
+
+  <body ng-controller="AppController">    
+    <ons-navigator> 
+      <!-- SLIDING MENU -->
+      <ons-sliding-menu
+                      main-page="main.html"
+                      menu-page="menu.html"       
+                      side="left"
+                      max-slide-distance="250px"
+                      var="menu">
+      </ons-sliding-menu>
+
+
+      <ons-template id="main.html">
+            <ons-page>
+              <ons-toolbar>
+                <div class="left">
+                  <ons-toolbar-button onclick="menu.toggleMenu()"><ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
+                </div>
+                <div class="center">Master Details</div>
+              </ons-toolbar>
+
+              <ons-list ng-controller="MasterController">
+                <ons-list-item modifier="chevron" class="item" ng-repeat="item in items" ng-click="showDetail($index)">
+                  <ons-row>
+                    <ons-col width="60px"> 
+                      <div class="item-thum"></div>
+                    </ons-col>
+                    <ons-col>
+                      <header>
+                        <span class="item-title">{{item.title}}</span>
+                        <span class="item-label">{{item.label}}</span>
+                      </header>
+                    </ons-col>
+                  </ons-row>                          
+                </ons-list-item>
+              </ons-list>
+            </ons-page>
+      </ons-template>
+
+   </ons-navigator>
+   <!-- MENU TEMPLATE -->
+    <ons-template id="menu.html">
+    <ons-list>
+      <ons-list-item modifier="chevron" onclick="menu.setMainPage('main.html', {closeMenu: true})">
+                Main
+      </ons-list-item>
+      <ons-list-item modifier="chevron" onclick="menu.setMainPage('views/detalleInvocador.html', {closeMenu: true})">
+        Summoner's Detail
+      </ons-list-item>
+      <ons-list-item modifier="chevron" onclick="menu.setMainPage('views/currentGame.html', {closeMenu: true})">
+        Current Game
+      </ons-list-item>
+    </ons-list>
+  </ons-template>
+
+
+  </body>  
+  </html>
+
